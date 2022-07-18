@@ -43,7 +43,13 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
 import { BotoneraComponent } from './componentes/botonera/botonera.component';
 import { ComplementosComponent } from './componentes/complementos/complementos.component';
-
+import { ChartComponent } from './componentes/chart/chart.component';
+import { ChartsModule } from 'ng2-charts';
+import { ModalSampleComponent } from './componentes/chart/modal-sample/modal-sample.component';
+import { ChartMediaComponent } from './componentes/chart-media/chart-media.component';
+import { ListaSinMuestreosComponent } from './componentes/lista-sin-muestreos/lista-sin-muestreos.component';
+import { SpinnerComponent } from './componentes/common/spinner/spinner.component';
+import { EmptyComponent } from './componentes/common/empty/empty.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +59,13 @@ import { ComplementosComponent } from './componentes/complementos/complementos.c
     FacturaComponent,
     NavbarComponent,
     BotoneraComponent,
-    ComplementosComponent
+    ComplementosComponent,
+    ChartComponent,
+    ModalSampleComponent,
+    ChartMediaComponent,
+    ListaSinMuestreosComponent,
+    SpinnerComponent,
+    EmptyComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +103,8 @@ import { ComplementosComponent } from './componentes/complementos/complementos.c
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

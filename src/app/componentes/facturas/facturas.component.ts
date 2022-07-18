@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import {MatTableDataSource} from '@angular/material/table';
 import Swal from 'sweetalert2';
+import { FacturasService } from 'src/app/service/facturas.service';
 @Component({
   selector: 'app-facturas',
   templateUrl: './facturas.component.html',
@@ -10,52 +11,42 @@ import Swal from 'sweetalert2';
 })
 export class FacturasComponent implements OnInit {
 
-  facturas: any = new Array();
-  lectura: any;
   tiles: any[] = [
     {id: 1, text: 'One', cols: 3, rows: 6, color: ''},
     {id: 2, text: 'Two', cols: 1, rows: 6, color: ''}
   ];
   displayedColumns: string[] = ['folio', 'fecha', 'fechaf', 'saldo', 'moneda', 'descargar', 'ver'];
   dataSource;
-  constructor(private router: Router,
-              private http: HttpClient) {
+  isLoading = false;
+  isEmpty = false;
+  title = "facturas";
+  constructor(private router: Router,private factirasService:FacturasService ) {
 
               }
   ngOnInit() {
-    Swal.fire({
-      title: 'Cargando Facturas',
-      icon: 'info'
-    });
-    Swal.showLoading();
-    this.lectura = JSON.parse(localStorage.getItem('credencial'));
-
-    console.log(this.lectura);
-    const credencial = {rfc: this.lectura.rfc};
-    this.http.post('https://tciconsultoria.com.mx/Apeam/ConsultaFactura/getFacturas.php', JSON.stringify(credencial)).subscribe(
-      (data: any) => {
-
-        data.forEach(element => {
-
-          this.facturas.push(element);
-        });
-
-        this.dataSource = new MatTableDataSource(this.facturas);
-
-        Swal.close();
-        });
+    this.isLoading = true;
+    this.factirasService.getFacturas().subscribe( (data:any) => {    
+        if(data.length > 0){
+          this.dataSource = new MatTableDataSource(data);
+          this.isLoading = false;
+        }else{
+          this.isLoading = false;
+          this.isEmpty = true;
+        }
+      },err=> {
+        this.isLoading = false;
+        this.isEmpty = true;
+      });
+      
   }
-
+  
   navegar(codigo, ruta) {
     localStorage.setItem('factura', JSON.stringify(codigo));
-
-    console.log(ruta);
     this.router.navigateByUrl(ruta);
 
   }
 
   internet(url: string) {
-
     window.open(url);
   }
 

@@ -18,9 +18,7 @@ export class BotoneraComponent implements OnInit {
   }
 
   cerrar(){
-    localStorage.removeItem('factura');
-    localStorage.removeItem('credencial');
-
+    localStorage.clear();
     this.router.navigateByUrl('login');
   }
 

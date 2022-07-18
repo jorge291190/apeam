@@ -11,12 +11,12 @@ body {
     background: linear-gradient(to bottom, #ffffff -2%, #33cc33 400%);
 }
 
-div {
+.ng-star-inserted  {
     overflow: scroll;
     overflow-y: scroll;
     scrollbar-width: thin;
 }
 
-div::-webkit-scrollbar {
+.ng-star-inserted::-webkit-scrollbar {
     display: none;
 }

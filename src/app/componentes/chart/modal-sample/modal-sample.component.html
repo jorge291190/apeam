@@ -1,0 +1,45 @@
+<h2 mat-dialog-title class="title-dialog">Resultados {{data.fecha_text}}</h2>
+<mat-dialog-content class="mat-typography">
+  <mat-grid-list cols="3" rowHeight="5:1">
+    <mat-grid-tile><span class="sub">Hue:&nbsp;</span>{{ isObjectEmpty(data.huerta) }}</mat-grid-tile>
+    <mat-grid-tile><span class="sub">Lote:&nbsp;</span>{{data.lote}}</mat-grid-tile>
+    <mat-grid-tile><span class="sub">Peso lote:&nbsp;</span>{{data.peso_lote}}</mat-grid-tile>
+    <mat-grid-tile><span class="sub">Caja 32-70:&nbsp;</span>{{data.caja_v_32_70}}</mat-grid-tile>
+    <mat-grid-tile><span class="sub">Caja 84:&nbsp;</span>{{data.caja_v_84}}</mat-grid-tile>
+    <mat-grid-tile><span class="sub">Charola:&nbsp;</span>{{data.charola}}</mat-grid-tile>
+  </mat-grid-list>
+
+  <table>
+    <thead>
+      <th>Calibre</th>
+      <th>C1</th>
+      <th>C2</th>
+      <th>C3</th>
+      <th>C4</th> 
+      <th>C5</th>
+      <th>Promedio</th>
+      <th>Min permitido</th>
+      <th>Diferencia</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let muestreo of data.muestreo">
+        <td>{{muestreo.calibre}}</td>
+        <td>{{muestreo.c1}}</td>
+        <td>{{muestreo.c2}}</td>
+        <td>{{muestreo.c3}}</td>
+        <td>{{muestreo.c4}}</td>
+        <td>{{muestreo.c5}}</td>
+        <td>{{muestreo.peso_promedio}}</td>
+        <td>{{muestreo.rango_minimo}}</td>
+        <td>{{muestreo.diferencias}}</td>
+      </tr>
+    </tbody>
+  </table>
+<br><br>
+  <h3 class="body-footer"><span class="sub">Rango minimo permitido: </span>{{data.rango_min_permitido}}</h3>
+  <h3 class="body-footer"><span class="sub">Media (x) empaque: </span> {{data.peso_promedio}}</h3>
+  <h3 class="body-footer"><span class="sub">Diferencia: </span> {{data.dif__x_min}}</h3>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close color="primary">Cerrar</button>
+</mat-dialog-actions>

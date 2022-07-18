@@ -1,0 +1,47 @@
+
+<div style="width: 98%; margin: 0 auto; margin-top: 1%;" class="shadow-lg p-3 mb-5 bg-white rounded">
+    <mat-grid-list cols="4" rowHeight="100px">
+        <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
+            <div style="width: 95%; height: 95%;" *ngIf="tile.id === 1">
+                <mat-toolbar color="primary" style="height: 30px;">MEDIA POR EMPAQUE</mat-toolbar>
+
+                <div class="main-container m-3">
+                  <spinner [show]="isLoading"></spinner>
+                    <empty [show]="isEmpty"></empty>
+                    <div *ngIf="!isLoading && !isEmpty">
+                      <mat-form-field appearance="fill">
+                          <mat-label>Filtrar por mes:</mat-label>
+                          <mat-select (selectionChange)="initChart($event.value)" [(ngModel)]="mounthFilter">
+                            <mat-option *ngFor="let mounth of argsMounth" [value]="mounth">
+                              {{mounth}}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        
+                      <div style="display: block;width: 700px;height: 500px;">
+                          <canvas baseChart width="700" height="450"
+                            [datasets]="lineChartData"
+                            [labels]="lineChartLabels"
+                            [options]="lineChartOptions"
+                            [colors]="lineChartColors"
+                            [legend]="lineChartLegend"
+                            [chartType]="lineChartType"
+                            [plugins]="lineChartPlugins">
+                          </canvas>
+                      </div>
+                    </div>  
+                </div>
+
+            </div>
+
+            <div style="width: 95%; height: 95%;" *ngIf="tile.id === 2">
+
+                <img src="https://pbs.twimg.com/profile_images/443438164196089856/JeA0mcZH_400x400.jpeg" width="90%" style="margin: 0 auto; margin-top: 3%;">
+                <app-botonera></app-botonera>
+            </div>
+            <div style="width: 95%; height: 95%;" *ngIf="tile.id === 2">
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+</div>

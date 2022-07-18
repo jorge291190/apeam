@@ -1,46 +1,41 @@
+
 <div style="width: 98%; margin: 0 auto; margin-top: 1%;" class="shadow-lg p-3 mb-5 bg-white rounded">
     <mat-grid-list cols="4" rowHeight="100px">
         <mat-grid-tile *ngFor="let tile of tiles" [colspan]="tile.cols" [rowspan]="tile.rows" [style.background]="tile.color">
             <div style="width: 95%; height: 95%;" *ngIf="tile.id === 1">
-                <mat-toolbar color="primary" style="height: 30px;">FACTURAS</mat-toolbar>
+                <mat-toolbar color="primary" style="height: 30px;">LISTA DE PESO NETO SIN MUESTREOS</mat-toolbar>
 
                 <div class="main-container m-3">
-                    <spinner [show]="isLoading" [title]="title"></spinner>
+                    <spinner [show]="isLoading"></spinner>
                     <empty [show]="isEmpty"></empty>
                     <div *ngIf="!isLoading && !isEmpty">
                         <mat-form-field>
                             <mat-label>Filtro</mat-label>
                             <input matInput (keyup)="applyFilter($event)" placeholder="Busqueda">
                         </mat-form-field>
-
+    
                         <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="width: 100%;">
-
-                            <!-- Position Column -->
-                            <ng-container matColumnDef="folio">
-                                <th mat-header-cell *matHeaderCellDef> Folio </th>
-                                <td mat-cell *matCellDef="let element">REP {{element.folio}} </td>
-                            </ng-container>
-
-                            <!-- Name Column -->
+    
                             <ng-container matColumnDef="fecha">
-                                <th mat-header-cell *matHeaderCellDef> Fecha Emision </th>
-                                <td mat-cell *matCellDef="let element"> {{element.fecha_f}} </td>
+                                <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                                <td mat-cell *matCellDef="let element"> {{element.fecha_text}} </td>
                             </ng-container>
-
-                            <!-- Symbol Column -->
-                            <ng-container matColumnDef="razon">
-                                <th mat-header-cell *matHeaderCellDef> Moneda </th>
-                                <td mat-cell *matCellDef="let element"> {{element.cliente_factura___razon_social}} </td>
+    
+                            <ng-container matColumnDef="mes">
+                                <th mat-header-cell *matHeaderCellDef> Mes </th>
+                                <td mat-cell *matCellDef="let element"> {{element.mounth}} </td>
                             </ng-container>
-                            <!-- Symbol Column -->
-                            <ng-container matColumnDef="descargar">
-                                <th mat-header-cell *matHeaderCellDef> Descargar REP </th>
-                                <td mat-cell *matCellDef="let element">
-
-                                    <button mat-raised-button color="primary" (click)="internet(element.descarga)">REP</button> </td>
+    
+                            <ng-container matColumnDef="ano">
+                                <th mat-header-cell *matHeaderCellDef> Año </th>
+                                <td mat-cell *matCellDef="let element"> {{element.year}} </td>
                             </ng-container>
-
-
+    
+                            <ng-container matColumnDef="nota">
+                                <th mat-header-cell *matHeaderCellDef> Nota </th>
+                                <td mat-cell *matCellDef="let element"> {{element.observaciones}} </td>
+                            </ng-container>
+    
                             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                         </table>
@@ -60,3 +55,4 @@
     </mat-grid-list>
 
 </div>
+

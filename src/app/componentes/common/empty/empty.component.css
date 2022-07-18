@@ -1,0 +1,15 @@
+.div-empty{
+	height: 400px;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.icon{
+    font-size: 170px;
+}
+
+.container-empty{
+    font-weight: bold;
+    color: rgba(120, 120, 121,0.4);
+}

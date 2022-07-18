@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {MatTableDataSource} from '@angular/material/table';
-import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { PagosService } from 'src/app/service/pagos.service';
 
 @Component({
   selector: 'app-complementos',
@@ -11,53 +11,38 @@ import { Router } from '@angular/router';
 })
 export class ComplementosComponent implements OnInit {
 
-  facturas: any = new Array();
-  lectura: any;
+
   tiles: any[] = [
     {id: 1, text: 'One', cols: 3, rows: 6, color: ''},
     {id: 2, text: 'Two', cols: 1, rows: 6, color: ''}
   ];
+  isLoading = false;
+  isEmpty = false;
   displayedColumns: string[] = ['folio', 'fecha', 'razon', 'descargar'];
   dataSource;
+  title = "complementos";
   constructor(private router: Router,
-              private http: HttpClient) {
+              private pagosService: PagosService) {
 
               }
 
 ngOnInit() {
-  Swal.fire({
-    title: 'Cargando Facturas',
-    icon: 'info'
+  this.isLoading = true;
+  this.pagosService.getPagos().subscribe( (data: any) => {
+      if(data.length > 0){
+        this.dataSource = new MatTableDataSource(data);
+        this.isLoading = false;
+      }else{
+        this.isEmpty = true;
+        this.isLoading = false;
+      }
+  },err => {
+    this.isEmpty = true;
+    this.isLoading = false;
   });
-  Swal.showLoading();
-  this.lectura = JSON.parse(localStorage.getItem('credencial'));
-
-  console.log(this.lectura);
-  const credencial = {rfc: this.lectura.rfc};
-  this.http.post('https://tciconsultoria.com/Apeam/servicios/reps.php', JSON.stringify(credencial)).subscribe(
-    (data: any) => {
-      console.log(data.data.record);
-      Array.from(data.data.record).forEach(element => {
-
-        this.facturas.push(element);
-      });
-
-      this.dataSource = new MatTableDataSource(this.facturas);
-
-      Swal.close();
-      });
-}
-
-navegar(codigo, ruta) {
-  localStorage.setItem('factura', JSON.stringify(codigo));
-
-  console.log(ruta);
-  this.router.navigateByUrl(ruta);
-
 }
 
 internet(url: string) {
-
   window.open(url);
 }
 

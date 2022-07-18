@@ -12,7 +12,10 @@ botones: any  = [
   {texto: 'Consulta Facturas',
     ruta: 'facturas'},
     {texto: 'Consulta Pagos',
-    ruta: 'complementos'}
+    ruta: 'complementos'},
+    {texto: 'Peso neto',ruta: 'neto'},
+    {texto: 'Media por empaque',ruta: 'media'},
+    {texto: 'Peso sin muestreos',ruta: 'sinmuestreos'}
 ];
 
 tiles: any[] = [
