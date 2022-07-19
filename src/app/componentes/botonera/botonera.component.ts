@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class BotoneraComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
   }
@@ -19,7 +19,7 @@ export class BotoneraComponent implements OnInit {
 
   cerrar(){
     localStorage.clear();
-    this.router.navigateByUrl('login');
+    location.reload();
   }
 
 }
