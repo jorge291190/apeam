@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ChartService } from 'src/app/service/chart.service';
 import { GraphicsService } from 'src/app/service/graphics.service';
+import { TitleChange } from '../common/utils/title';
 
 @Component({
   selector: 'app-lista-sin-muestreos',
@@ -17,7 +18,9 @@ export class ListaSinMuestreosComponent implements OnInit {
     {id: 2, text: 'Two', cols: 1, rows: 6, color: ''}
   ];
   displayedColumns: string[] = ['fecha', 'mes','ano', 'nota'];
-  constructor(public g: GraphicsService,public chartService:ChartService) { }
+  constructor(public g: GraphicsService,public chartService:ChartService,private t:TitleChange) { 
+    t.changeTitle("Listado sin muestreos");
+  }
 
   ngOnInit(): void {
     this.isLoading = true;

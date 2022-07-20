@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { ChartService } from 'src/app/service/chart.service';
+import { TitleChange } from '../common/utils/title';
 import { ModalSampleComponent } from './modal-sample/modal-sample.component';
 @Component({
   selector: 'app-chart',
@@ -46,8 +47,8 @@ export class ChartComponent implements OnInit {
   ];
   isLoading = false;
   isEmpty = false;
-  constructor(private chartService:ChartService,public dialog: MatDialog) { 
-
+  constructor(private chartService:ChartService,public dialog: MatDialog,private t:TitleChange) { 
+    t.changeTitle("Peso neto");
   }
 
   ngOnInit(): void {

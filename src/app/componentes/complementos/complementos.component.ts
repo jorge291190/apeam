@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import {MatTableDataSource} from '@angular/material/table';
 import { Router } from '@angular/router';
 import { PagosService } from 'src/app/service/pagos.service';
+import { TitleChange } from '../common/utils/title';
 
 @Component({
   selector: 'app-complementos',
@@ -22,8 +23,9 @@ export class ComplementosComponent implements OnInit {
   dataSource;
   title = "complementos";
   constructor(private router: Router,
-              private pagosService: PagosService) {
-
+              private pagosService: PagosService,
+              private t:TitleChange) {
+                t.changeTitle("Pagos")
               }
 
 ngOnInit() {

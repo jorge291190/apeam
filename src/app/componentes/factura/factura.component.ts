@@ -4,6 +4,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { FacturasService } from 'src/app/service/facturas.service';
 import { StorageService } from 'src/app/service/storage.service';
+import { TitleChange } from '../common/utils/title';
 
 @Component({
   selector: 'app-factura',
@@ -23,8 +24,12 @@ export class FacturaComponent implements OnInit {
   dataSource;
   title = "manifiestos";
   constructor(private router: Router,
-              private facturaService: FacturasService, private storage:StorageService) {
+              private facturaService: FacturasService, 
+              private storage:StorageService,
+              private t:TitleChange) {
                 this.factura = storage.getInvoice();
+                t.changeTitle("APM"+this.factura.folio);
+                
   }
   
   ngOnInit() {

@@ -3,6 +3,7 @@ import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { ChartService } from 'src/app/service/chart.service';
 import { StorageService } from 'src/app/service/storage.service';
+import { TitleChange } from '../common/utils/title';
 
 @Component({
   selector: 'app-chart-media',
@@ -43,7 +44,9 @@ export class ChartMediaComponent implements OnInit {
 
   isLoading = false;
   isEmpty = false;
-  constructor(private chartService:ChartService, private storage: StorageService) { }
+  constructor(private chartService:ChartService, private storage: StorageService,private t:TitleChange) {
+    t.changeTitle("Media por empaque");
+   }
 
   ngOnInit(): void {
     this.isLoading = true;

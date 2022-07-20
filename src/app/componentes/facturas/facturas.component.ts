@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 import { FacturasService } from 'src/app/service/facturas.service';
 import { StorageService } from 'src/app/service/storage.service';
 import { EncryptService } from 'src/app/service/encrypt.service';
+import { TitleChange } from '../common/utils/title';
 @Component({
   selector: 'app-facturas',
   templateUrl: './facturas.component.html',
@@ -22,9 +23,9 @@ export class FacturasComponent implements OnInit {
   isLoading = false;
   isEmpty = false;
   title = "facturas";
-  constructor(private router: Router,private facturasService:FacturasService, private storage:StorageService,private encrypt:EncryptService ) {
-
-              }
+  constructor(private router: Router,private facturasService:FacturasService, private storage:StorageService,private t:TitleChange ) {
+    t.changeTitle("Facturas");
+  }
   ngOnInit() {
     this.isLoading = true;
     this.facturasService.getFacturas().subscribe( (data:any) => {    
