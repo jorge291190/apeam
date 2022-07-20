@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { ChartService } from 'src/app/service/chart.service';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-chart-media',
@@ -42,7 +43,7 @@ export class ChartMediaComponent implements OnInit {
 
   isLoading = false;
   isEmpty = false;
-  constructor(private chartService:ChartService) { }
+  constructor(private chartService:ChartService, private storage: StorageService) { }
 
   ngOnInit(): void {
     this.isLoading = true;
@@ -68,7 +69,7 @@ export class ChartMediaComponent implements OnInit {
     await this.argsDataChart.forEach( (peso:any) => {
       if(peso.mounth == mounth){
         this.dataFilter.push( peso.peso_promedio );
-        let data = JSON.parse(localStorage.getItem("credencial"));
+        let data = this.storage.getCredentials();
         if(data.rfc != peso.empaque_r_f_c_){
           this.labelFilter.push( "" );
         }else{

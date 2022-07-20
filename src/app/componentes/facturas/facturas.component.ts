@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import {MatTableDataSource} from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { FacturasService } from 'src/app/service/facturas.service';
+import { StorageService } from 'src/app/service/storage.service';
+import { EncryptService } from 'src/app/service/encrypt.service';
 @Component({
   selector: 'app-facturas',
   templateUrl: './facturas.component.html',
@@ -20,12 +22,12 @@ export class FacturasComponent implements OnInit {
   isLoading = false;
   isEmpty = false;
   title = "facturas";
-  constructor(private router: Router,private factirasService:FacturasService ) {
+  constructor(private router: Router,private facturasService:FacturasService, private storage:StorageService,private encrypt:EncryptService ) {
 
               }
   ngOnInit() {
     this.isLoading = true;
-    this.factirasService.getFacturas().subscribe( (data:any) => {    
+    this.facturasService.getFacturas().subscribe( (data:any) => {    
         if(data.length > 0){
           this.dataSource = new MatTableDataSource(data);
           this.isLoading = false;
@@ -41,9 +43,8 @@ export class FacturasComponent implements OnInit {
   }
   
   navegar(codigo, ruta) {
-    localStorage.setItem('factura', JSON.stringify(codigo));
+    this.storage.setInvoice(codigo);
     this.router.navigateByUrl(ruta);
-
   }
 
   internet(url: string) {

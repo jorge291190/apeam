@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { EncryptService } from 'src/app/service/encrypt.service';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-menu',
@@ -29,7 +31,6 @@ tiles: any[] = [
   }
 
   navegar(ruta: string) {
-  this.router.navigateByUrl(ruta);
-
+    this.router.navigateByUrl(ruta);
   }
 }

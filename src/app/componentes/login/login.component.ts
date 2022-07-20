@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import Swal from 'sweetalert2';
 import { LoginService } from 'src/app/service/login.service';
 import { GraphicsService } from 'src/app/service/graphics.service';
+import { StorageService } from 'src/app/service/storage.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   password = '';
   usuario = '';
   constructor(private router: Router,
-              private ls: LoginService,private g: GraphicsService) { }
+              private ls: LoginService,private g: GraphicsService, private storage:StorageService) { }
 
   ngOnInit() {
     if(this.ls.isAuth()){
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
           if (data.estatus) {
             this.g.showToastSuccess("Inicio de Sesion Correcto");
             const credencial: any = {rfc: data.rfc};
-            localStorage.setItem('credencial', JSON.stringify(credencial));
+            this.storage.setCredentials(credencial);
             this.router.navigateByUrl('menu');
           } else {
             this.g.showToastError("Error en credenciales");

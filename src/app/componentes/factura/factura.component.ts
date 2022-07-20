@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import {MatTableDataSource} from '@angular/material/table';
 import Swal from 'sweetalert2';
 import { FacturasService } from 'src/app/service/facturas.service';
+import { StorageService } from 'src/app/service/storage.service';
 
 @Component({
   selector: 'app-factura',
@@ -22,8 +23,8 @@ export class FacturaComponent implements OnInit {
   dataSource;
   title = "manifiestos";
   constructor(private router: Router,
-              private facturaService: FacturasService) {
-                this.factura = JSON.parse( localStorage.getItem('factura') );
+              private facturaService: FacturasService, private storage:StorageService) {
+                this.factura = storage.getInvoice();
   }
   
   ngOnInit() {
