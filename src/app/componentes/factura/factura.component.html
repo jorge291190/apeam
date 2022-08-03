@@ -11,10 +11,10 @@
                             <b>Fecha: </b>{{factura.fecha_emision_f}}
                         </p>
                         <p class="card-text">
-                            <b>Total: </b>{{factura.total_total | currency}}
+                            <b>Total: </b>{{ isObjectEmptyNumber(factura.total_total) | currency}}
                         </p>
                         <p>
-                            <b>Kilogramos: </b>{{factura.total_kilogramos }} Kg.
+                            <b>Kilogramos: </b>{{isObjectEmptyNumber(factura.total_kilogramos) }} Kg.
                         </p>
                         <p class="card-text">
                             <b>Dias Vencimiento: </b>{{factura.dias_vencimiento}}</p>

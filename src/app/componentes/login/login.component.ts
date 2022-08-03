@@ -38,7 +38,11 @@ export class LoginComponent implements OnInit {
       (data: any) => {
           if (data.estatus) {
             this.g.showToastSuccess("Inicio de Sesion Correcto");
-            const credencial: any = {rfc: data.rfc};
+            const credencial: any = {
+              rfc: data.rfc,
+              id: data.id,
+              razon: data.razon
+            };
             this.storage.setCredentials(credencial);
             this.router.navigateByUrl('menu');
           } else {

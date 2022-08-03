@@ -17,9 +17,9 @@ const routes: Routes = [
 {path: 'complementos', component: ComplementosComponent,canActivate: [ AuthGuard ]},
 {path: 'factura', component: FacturaComponent,canActivate: [ AuthGuard ]},
 {path: 'login', component: LoginComponent},
-{path: 'neto', component: ChartComponent,canActivate: [ AuthGuard ]},
-{path: 'media', component: ChartMediaComponent,canActivate: [ AuthGuard ]},
-{path: 'sinmuestreos', component: ListaSinMuestreosComponent,canActivate: [ AuthGuard ]},
+// {path: 'neto', component: ChartComponent,canActivate: [ AuthGuard ]},
+// {path: 'media', component: ChartMediaComponent,canActivate: [ AuthGuard ]},
+// {path: 'sinmuestreos', component: ListaSinMuestreosComponent,canActivate: [ AuthGuard ]},
 {path: '**', component: LoginComponent}
 ];
 

@@ -17,4 +17,9 @@ export class LoginService {
     let data = this.storage.getCredentials();    
     return this.response != null || data != null;
   }
+
+  logOut(){
+    localStorage.clear();
+    location.reload();
+  }
 }

@@ -57,4 +57,9 @@ export class FacturasComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+
+  isObjectEmptyNumber(object){
+    return Object.keys(object).length ? object : 0;
+  }
+
 }
