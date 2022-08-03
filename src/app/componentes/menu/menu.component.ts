@@ -30,11 +30,7 @@ tiles: any[] = [
     let storageAux =  storage.getCredentials();
     if(!storageAux.id){
       ls.logOut();
-    }
-
-    console.log(storageAux);
-    
-    
+    }    
   }
 
   ngOnInit() {
